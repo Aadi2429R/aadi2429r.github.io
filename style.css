@@ -1,0 +1,290 @@
+:root {
+  --navy: #15123F;
+  --mint: #2EF2B4;
+  --violet: #6C3BFF;
+  --pink: #FF4D8D;
+  --mist: #EEEBFF;
+  --ink: #0E0E1A;
+  --white: #FFFFFF;
+  --display: "Bricolage Grotesque", "Arial Black", sans-serif;
+  --mono: "Space Mono", Consolas, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.wrap {
+  width: min(1200px, 100%);
+  margin-inline: auto;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+
+h1, h2, h3, p, ul, figure { margin: 0; }
+
+h1, h2 {
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+h1 { font-size: clamp(4.25rem, 11.5vw, 9.5rem); }
+h2 { font-size: clamp(3rem, 9vw, 6.5rem); }
+h3 { font-size: 1.5rem; font-weight: 800; line-height: 1.15; }
+
+a { color: inherit; }
+
+a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+/* Placeholders. Each one disappears once you replace it with real text. */
+.todo {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.82em;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+  padding: 0.05em 0.35em;
+  border: 2px dashed var(--ink);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Hero */
+.hero { background: var(--navy); color: var(--white); }
+
+/* Circuit-board pattern behind every section. Each colour sets its own --trace tint. */
+.hero, .band {
+  --trace: #252162;
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before, .band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--trace);
+  --traces: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' fill='none' stroke='%23000' stroke-width='3'%3E%3Cpath d='M0 40H70l30 30v70l30 30H240M0 170H40l30 30v40M70 0V30M240 40H190L160 10V0M160 240V200'/%3E%3Ccircle cx='70' cy='36' r='6'/%3E%3Ccircle cx='160' cy='194' r='6'/%3E%3Ccircle cx='100' cy='105' r='6'/%3E%3C/svg%3E");
+  -webkit-mask: var(--traces);
+  mask: var(--traces);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 20px;
+  font-family: var(--mono);
+  font-weight: 700;
+}
+
+.nav a { text-decoration: none; }
+.nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nav-mark { font-size: 1.25rem; }
+.nav-links { display: flex; gap: clamp(14px, 3vw, 32px); font-size: 0.95rem; }
+
+.hero-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+  align-items: center;
+  gap: clamp(24px, 4vw, 56px);
+  padding-block: clamp(32px, 7vw, 72px) clamp(36px, 6vw, 64px);
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 5px solid var(--white);
+  box-shadow: 12px 12px 0 var(--mint);
+}
+
+.hero-line {
+  max-width: 44rem;
+  margin-top: 1.75rem;
+  font-size: clamp(1.25rem, 2.6vw, 1.625rem);
+  line-height: 1.45;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7em 1.25em;
+  border: 3px solid var(--ink);
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.btn:hover { transform: translateY(-3px); }
+.btn-ink { background: var(--ink); color: var(--mint); }
+.btn-line { background: transparent; color: var(--ink); }
+.hero .btn { border-color: var(--mint); }
+.hero .btn-ink { background: var(--mint); color: var(--ink); }
+.hero .btn-line { color: var(--mint); }
+
+/* The IoT network */
+.iot svg { display: block; width: 100%; height: clamp(130px, 17vw, 200px); }
+.wire path, .pulse path { fill: none; stroke-width: 6; }
+.wire path { stroke: var(--white); }
+.pulse path {
+  stroke: var(--mint);
+  stroke-dasharray: 24 176;
+  animation: signal 2.4s linear infinite;
+}
+.pins { fill: none; stroke: var(--mint); stroke-width: 6; }
+.chip { fill: var(--mint); }
+.chip-label { fill: var(--ink); font-family: var(--mono); font-weight: 700; font-size: 36px; }
+.signal path { fill: none; stroke: var(--mint); stroke-width: 6; stroke-linecap: round; animation: broadcast 1.8s ease-in-out infinite; }
+.signal path:nth-child(2) { animation-delay: 0.25s; }
+.signal path:nth-child(3) { animation-delay: 0.5s; }
+.node { stroke: var(--white); stroke-width: 5; }
+.node-red { fill: #D81B66; }
+.node-blue { fill: var(--violet); }
+.node-ink { fill: var(--ink); }
+.icon { fill: none; stroke: var(--white); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+
+.iot figcaption {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding-block: 14px 24px;
+}
+
+@keyframes signal { to { stroke-dashoffset: -200; } }
+@keyframes broadcast { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+/* Colour bands */
+.band { padding-block: clamp(64px, 11vw, 128px); }
+.band h2 { margin-bottom: clamp(32px, 5vw, 56px); }
+.band-mint { background: var(--mint); --trace: #1FDFA2; }
+.band-ink { background: var(--ink); color: var(--white); --trace: #1E1E30; }
+.band-ink .eyebrow, .band-ink h2 { color: var(--mint); }
+.band-violet { background: var(--violet); color: var(--white); --trace: #7C50FF; }
+.band-mist { background: var(--mist); --trace: #DFD9FF; }
+.band-pink { background: var(--pink); --trace: #F23A7C; }
+
+/* About */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: clamp(8px, 4vw, 56px);
+}
+
+.prose { font-size: clamp(1.25rem, 2.4vw, 1.625rem); line-height: 1.45; }
+.prose p + p { margin-top: 1.25rem; }
+
+/* Projects */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px;
+  background: var(--white);
+  color: var(--ink);
+  border-top: 14px solid var(--pink);
+}
+
+.card:nth-child(2) { border-top-color: var(--mint); }
+.card:nth-child(3) { border-top-color: var(--violet); }
+.tools { font-family: var(--mono); font-size: 0.9rem; }
+.card-link { margin-top: auto; font-family: var(--mono); font-size: 0.9rem; font-weight: 700; }
+
+/* Skills */
+.skill-groups {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px clamp(24px, 5vw, 64px);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: 0.35em 0.8em;
+  border: 2px solid var(--white);
+  font-family: var(--mono);
+  font-size: 0.95rem;
+}
+
+/* Beyond class */
+.rows { padding: 0; list-style: none; border-top: 3px solid var(--ink); }
+
+.rows li {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 16px;
+  padding-block: 20px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.row-when { font-family: var(--mono); font-weight: 700; }
+.row-what { font-size: clamp(1.125rem, 2.4vw, 1.5rem); }
+
+/* Contact */
+.band h2.contact-title {
+  font-size: clamp(4.25rem, 19vw, 13rem);
+  margin-bottom: 0;
+}
+
+.fineprint { margin-top: 3rem; font-family: var(--mono); font-size: 0.85rem; }
+
+@media (max-width: 860px) {
+  .split, .cards, .skill-groups, .hero-body { grid-template-columns: 1fr; }
+  h1 { font-size: clamp(4.25rem, 19vw, 9.5rem); }
+  .portrait { order: -1; max-width: 240px; box-shadow: 8px 8px 0 var(--mint); }
+}
+
+@media (max-width: 480px) {
+  .rows li { grid-template-columns: 1fr; gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pulse { display: none; }
+  .signal path { animation: none; }
+  .btn { transition: none; }
+}
